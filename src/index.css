@@ -2,41 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Beauty Clinic Design System - Luxury & Trust */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Base Colors - Soft and Premium */
+    --background: 25 20% 98%;
+    --foreground: 25 15% 25%;
 
+    /* Card System */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 25 15% 25%;
 
+    /* Interactive Elements */
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 25 15% 25%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary - Dusty Rose */
+    --primary: 345 35% 75%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 345 40% 70%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary - Warm Beige */
+    --secondary: 25 25% 92%;
+    --secondary-foreground: 25 15% 25%;
+    --secondary-hover: 25 30% 88%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted - Soft Neutrals */
+    --muted: 25 15% 94%;
+    --muted-foreground: 25 10% 50%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent - Sage Green */
+    --accent: 140 20% 85%;
+    --accent-foreground: 25 15% 25%;
+    --accent-hover: 140 25% 80%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* System Colors */
+    --destructive: 0 65% 70%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Borders & Inputs */
+    --border: 25 15% 88%;
+    --input: 25 15% 92%;
+    --ring: 345 35% 75%;
 
-    --radius: 0.5rem;
+    --radius: 1rem;
+
+    /* Gradients for Beauty Clinic */
+    --gradient-hero: linear-gradient(135deg, hsl(345 35% 75% / 0.1), hsl(140 20% 85% / 0.1));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(25 25% 96%));
+    --gradient-accent: linear-gradient(90deg, hsl(345 35% 75%), hsl(25 35% 80%));
+
+    /* Shadows for Premium Feel */
+    --shadow-soft: 0 4px 20px hsl(25 15% 25% / 0.08);
+    --shadow-card: 0 8px 30px hsl(25 15% 25% / 0.12);
+    --shadow-elevated: 0 12px 40px hsl(25 15% 25% / 0.15);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-elegant: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +124,70 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+  
+  /* Smooth scrolling for the entire page */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Beauty Clinic Custom Components */
+  .beauty-card {
+    @apply bg-card border border-border rounded-2xl p-6 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-elevated)] transition-[var(--transition-smooth)];
+    background: var(--gradient-card);
+  }
+  
+  .beauty-button-primary {
+    @apply bg-primary hover:bg-[hsl(var(--primary-hover))] text-primary-foreground px-8 py-4 rounded-full font-medium shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-card)] transition-[var(--transition-smooth)] hover:scale-105;
+  }
+  
+  .beauty-button-secondary {
+    @apply bg-secondary hover:bg-[hsl(var(--secondary-hover))] text-secondary-foreground px-8 py-4 rounded-full font-medium shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-card)] transition-[var(--transition-smooth)] hover:scale-105;
+  }
+  
+  .beauty-section {
+    @apply py-20 px-4 lg:px-8;
+  }
+  
+  .fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+  
+  .slide-up {
+    animation: slideUp 1s ease-out forwards;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
